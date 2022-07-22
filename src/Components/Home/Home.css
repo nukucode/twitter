@@ -1,0 +1,20 @@
+.home{
+    flex: 2;
+    color: #fff;
+    border: 1px solid #4a4949;
+    height: 100vh;
+    overflow-y: scroll;
+}
+
+.home::-webkit-scrollbar{
+    display: none;
+    scroll-behavior: smooth;
+}
+
+
+.home__top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}

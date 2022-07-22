@@ -1,0 +1,56 @@
+.sidebar {
+  width: 280px;
+  color: #fff;
+  margin: 10px 0;
+}
+
+.logo {
+  padding-left: 25px;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.logo .MuiSvgIcon-root {
+  font-size: 35px;
+  color: rgb(180, 178, 178);
+}
+
+.tweet {
+  background: #1a8cd8;
+  border-radius: 30px;
+  padding: 15px 6rem;
+  font-family: Montserrat;
+  font-weight: bold;
+  font-size: 17px;
+  margin: 15px 0;
+  cursor: pointer;
+  color: #fff;
+  transition: .4s;
+}
+
+.tweet:hover{
+    background: #1073b5;
+}
+.user {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding-right: 10px;
+  position: absolute;
+  bottom: 30px;
+  cursor: pointer;
+}
+
+.user__right {
+  padding-left: 3rem;
+}
+
+.user__left .MuiAvatar-root {
+  width: 45px;
+  height: 45px;
+}
+
+.user__mid span {
+  color: #aeaeae;
+  font-size: 14px;
+}

@@ -1,0 +1,71 @@
+.tweett{
+    border-top: 1px solid rgb(60, 60, 60);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.tweet__top{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.tweet__top .MuiAvatar-root{
+    width: 48px;
+    height: 48px;
+    cursor: pointer;
+}
+
+.tweet__top .user_info span{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 15px;
+    font-weight: 400px;
+
+}
+
+.tweet__top .user_info span p{
+    font-size: 13px;
+}
+
+.tweet__top .title{
+    font-size: 14px;
+    margin-top: 5px;
+    font-weight: 400;
+}
+
+.tweet__mid{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    height: 400px;
+    margin: 0 auto;
+}
+
+.tweet__mid img{
+    border-radius: 10px;
+    border: 1px solid #252525;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.tweet__bottom{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+.tweet__bottom .MuiSvgIcon-root{
+    cursor: pointer;
+    font-size: 25px;
+    color: #afafaf;
+}
+
+.tweet__btn{
+    margin-left: auto;
+}

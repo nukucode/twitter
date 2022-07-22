@@ -1,0 +1,35 @@
+.widgets{
+    flex: 1;
+    margin: 0 15px;
+}
+
+.search__bar{
+    background:#202327;
+    border-radius: 30px;
+    height: 45px;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    margin-bottom: 1rem;
+}
+
+.search__bar .MuiSvgIcon-root{
+    color: #fff;
+}
+
+.search__bar input{
+    width: 100%;
+    height: 100%;
+    background: none;
+    border: none;
+    color: #fff;
+    outline: none;
+    font-family: Montserrat;
+    padding-left: 6px;
+}
+
+.search__bar input::placeholder{
+    color: #fff;
+}
+

@@ -1,0 +1,28 @@
+.sideitem{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 25px;
+    width: fit-content;
+    border-radius: 30px;
+    color: #fff;
+    transition: .3s;
+}
+
+.sideitem:hover{
+    background: #181818;
+    cursor: pointer;
+}
+
+.sideitem .icon{
+    font-size: 30px;
+}
+
+.sideitem span{
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.active span{
+    font-weight: bold;
+}
