@@ -97,3 +97,22 @@
 .layer_show {
   display: block;
 }
+
+.post .MuiLinearProgress-root{
+  display: none;
+}
+
+.post .ps{
+  display: block;
+}
+
+.button{
+  margin: 10px 0;
+  cursor: pointer;
+  margin-left: auto;
+  border-radius: 5px;
+  box-shadow: 0 0 1px;
+  width: fit-content;
+  padding: 12px 28px;
+  background: royalblue;
+}

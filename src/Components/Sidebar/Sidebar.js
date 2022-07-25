@@ -11,8 +11,10 @@ import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBullet
 import MoreHorizOutlinedIcon from "@mui/icons-material/MoreHorizOutlined";
 import Avatar from "@mui/material/Avatar";
 import Sideitem from "./SideItem/Sideitem";
+import { useSelector } from "react-redux";
 
 function Sidebar() {
+  const user = useSelector((state) => state.login.user);
   return (
     <>
       <div className="sidebar">
@@ -30,11 +32,11 @@ function Sidebar() {
         <button className="tweet">Tweet</button>
         <div className="user">
           <div className="user__left">
-            <Avatar />
+            <Avatar src={user.avatar} />
           </div>
           <div className="user__mid">
-            <h3>Hacker</h3>
-            <span>@therogersak</span>
+            <h3>{user.name}</h3>
+            <span>{user.username}</span>
           </div>
           <div className="user__right">
             <MoreHorizOutlinedIcon />
