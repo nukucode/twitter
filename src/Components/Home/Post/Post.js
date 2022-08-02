@@ -12,72 +12,72 @@ import db from "../../../Firebase/Firebase";
 import firebase from "firebase/compat/app";
 import LinearProgress from "@mui/material/LinearProgress";
 import { useSelector } from "react-redux";
+import Emoji from "../Emoji/Emoji";
 
 function Post() {
-  const [{ alt, src }, setImg] = useState({
-    src: "",
-    alt: "Upload an Image",
-  });
+  const [imgs, setImgs] = useState([]);
 
-  const [title, setTitle] = useState("");
-  const [imgPre, setImgPre] = useState("");
+  const [title, setTitle] = useState('');
   const [show, setShow] = useState(false);
   const [pshow, setPshow] = useState(false);
   const [progress, setProgress] = React.useState(0);
   const user = useSelector((state) => state.login.user);
+  const emoji = useSelector((state) => state.emoji.emoji);
+  console.log(emoji);
+
+
+
 
   const handleImg = (e) => {
-    if (e.target.files[0]) {
-      setImg({
-        src: e.target.files[0],
-        alt: e.target.files[0].name,
-      });
-
-      setImgPre(URL.createObjectURL(e.target.files[0]));
+    for (let i = 0; i < e.target.files.length; i++) {
+      const newImg = e.target.files[i];
+      newImg["id"] = Math.random();
+      setImgs((prevState) => [...prevState, newImg]);
     }
-    setShow(true);
   };
 
   const handleUplode = () => {
-    const uploadTask = storage.ref(`/images/${src.name}`).put(src);
-    //initiates the firebase side uploading
-    uploadTask.on(
-      "state_changed",
-      (snapShot) => {
-        const ps = Math.round(
-          (snapShot.bytesTransferred / snapShot.totalBytes) * 100
-        );
-        setProgress(ps);
-        setPshow(true);
-      },
-      (err) => {
-        //catches the errors
-        console.log(err);
-      },
-      () => {
-        // gets the functions from storage refences the image storage in firebase by the children
-        // gets the download url then sets the image from firebase as the value for the imgUrl key:
-        storage
-          .ref("images")
-          .child(src.name)
-          .getDownloadURL()
-          .then((img) => {
-            console.log(img);
-            db.collection("tweet").add({
-              timetamp: firebase.firestore.FieldValue.serverTimestamp(),
-              avatar: user.avatar,
-              title: title,
-              img: img,
-              varified: true,
-              username: user.username,
-              name: user.name,
-            });
+    imgs.map((img) => {
+      const uploadTask = storage.ref(`/images/${img.name}`).put(img);
+      //initiates the firebase side uploading
+      uploadTask.on(
+        "state_changed",
+        (snapShot) => {
+          const ps = Math.round(
+            (snapShot.bytesTransferred / snapShot.totalBytes) * 100
+          );
+          setProgress(ps);
+          setPshow(true);
+        },
+        (err) => {
+          //catches the errors
+          console.log(err);
+        },
+        () => {
+          // gets the functions from storage refences the image storage in firebase by the children
+          // gets the download url then sets the image from firebase as the value for the imgUrl key:
+          storage
+            .ref("images")
+            .child(img.name)
+            .getDownloadURL()
+            .then((img) => {
+              console.log(img);
+              db.collection("tweet").add({
+                timetamp: firebase.firestore.FieldValue.serverTimestamp(),
+                avatar: user.avatar,
+                title: title,
+                img: img,
+                varified: true,
+                username: user.username,
+                name: user.name,
+              });
 
-            setTitle("");
-            setPshow(false);
-          });
-      }
-    );
+              setTitle("");
+              setPshow(false);
+            });
+        }
+      );
+    });
   };
 
   return (
@@ -103,9 +103,11 @@ function Post() {
             />
             <InsertPhotoOutlinedIcon />
           </label>
+          <div onClick={() => setShow(true)}>
+            <SentimentSatisfiedAltOutlinedIcon />
+          </div>
           <GifOutlinedIcon />
           <PollOutlinedIcon />
-          <SentimentSatisfiedAltOutlinedIcon />
           <PendingActionsOutlinedIcon />
           <LocationOnOutlinedIcon />
           <button className="btn" onClick={handleUplode}>
@@ -117,14 +119,10 @@ function Post() {
           value={progress}
           className={pshow ? "pp ps" : "pp"}
         />
+
+        <Emoji show={show} />
       </div>
 
-      <div className={show ? "img__preview img__preview_show" : "img__preview"}>
-        <img src={imgPre} alt="" />
-        <div className="button" onClick={() => setShow(false)}>
-          Choose
-        </div>
-      </div>
       <div
         className={show ? "layer_show layer" : "layer"}
         onClick={() => setShow(false)}

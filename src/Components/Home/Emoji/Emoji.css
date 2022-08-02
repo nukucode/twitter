@@ -1,0 +1,11 @@
+.emojii{
+    display: none;
+  z-index: 1100;
+}
+.emoji_show {
+  display: block;
+}
+
+.emojii .emoji-picker-react{
+    box-shadow: none;
+}
