@@ -15,6 +15,7 @@ import { useSelector } from "react-redux";
 
 function Sidebar() {
   const user = useSelector((state) => state.login.user);
+  console.log(user)
   return (
     <>
       <div className="sidebar">

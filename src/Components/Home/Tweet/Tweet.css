@@ -28,6 +28,7 @@
 
 .tweet__top .user_info span p{
     font-size: 13px;
+    text-transform: lowercase;
 }
 
 .tweet__top .title{

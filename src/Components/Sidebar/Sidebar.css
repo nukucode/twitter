@@ -53,4 +53,5 @@
 .user__mid span {
   color: #aeaeae;
   font-size: 14px;
+  text-transform: lowercase;
 }
