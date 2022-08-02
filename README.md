@@ -31,9 +31,9 @@ $ npm start
 
 # Application running on port 3000
 ```
-### Observation
+### Views
 
-To use firebase you must register, which is necessarily used in the application.
+![Hits](https://hitcounter.pythonanywhere.com/count/tag.svg?url=https://github.com/therogersak/twitter-clone
 
 
 ## Contact
