@@ -31,9 +31,6 @@ $ npm start
 
 # Application running on port 3000
 ```
-### Views
-
-![Hits](https://hitcounter.pythonanywhere.com/count/tag.svg?url=https://github.com/therogersak/twitter-clone
 
 
 ## Contact
