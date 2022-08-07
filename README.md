@@ -31,9 +31,6 @@ $ npm start
 
 # Application running on port 3000
 ```
-### Observation
-
-To use firebase you must register, which is necessarily used in the application.
 
 
 ## Contact
