@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState = {
-  emoji: null,
+  emoji: false,
 };
 
 export const emojiSlice = createSlice({

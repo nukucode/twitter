@@ -11,73 +11,73 @@ import { storage } from "../../../Firebase/Firebase";
 import db from "../../../Firebase/Firebase";
 import firebase from "firebase/compat/app";
 import LinearProgress from "@mui/material/LinearProgress";
+import InputEmoji from "react-input-emoji";
 import { useSelector } from "react-redux";
-import Emoji from "../Emoji/Emoji";
 
 function Post() {
-  const [imgs, setImgs] = useState([]);
+  const [img, setImg] = useState(null);
 
-  const [title, setTitle] = useState('');
   const [show, setShow] = useState(false);
   const [pshow, setPshow] = useState(false);
   const [progress, setProgress] = React.useState(0);
   const user = useSelector((state) => state.login.user);
-  const emoji = useSelector((state) => state.emoji.emoji);
-  console.log(emoji);
+  const [image, setImage] = useState(null);
 
-
-
+  const [text, setText] = useState("");
 
   const handleImg = (e) => {
-    for (let i = 0; i < e.target.files.length; i++) {
-      const newImg = e.target.files[i];
-      newImg["id"] = Math.random();
-      setImgs((prevState) => [...prevState, newImg]);
+    const reader = new FileReader();
+    if (e.target.files[0]) {
+      reader.readAsDataURL(e.target.files[0]);
+      setImage(e.target.files[0]);
     }
+    reader.onload = (eventResult) => {
+      setImg(eventResult.target.result);
+    };
+
+    setShow(true);
   };
 
   const handleUplode = () => {
-    imgs.map((img) => {
-      const uploadTask = storage.ref(`/images/${img.name}`).put(img);
-      //initiates the firebase side uploading
-      uploadTask.on(
-        "state_changed",
-        (snapShot) => {
-          const ps = Math.round(
-            (snapShot.bytesTransferred / snapShot.totalBytes) * 100
-          );
-          setProgress(ps);
-          setPshow(true);
-        },
-        (err) => {
-          //catches the errors
-          console.log(err);
-        },
-        () => {
-          // gets the functions from storage refences the image storage in firebase by the children
-          // gets the download url then sets the image from firebase as the value for the imgUrl key:
-          storage
-            .ref("images")
-            .child(img.name)
-            .getDownloadURL()
-            .then((img) => {
-              console.log(img);
-              db.collection("tweet").add({
-                timetamp: firebase.firestore.FieldValue.serverTimestamp(),
-                avatar: user.avatar,
-                title: title,
-                img: img,
-                varified: true,
-                username: user.username,
-                name: user.name,
-              });
-
-              setTitle("");
-              setPshow(false);
+    const uploadTask = storage.ref(`/images/${image.name}`).put(image);
+    //initiates the firebase side uploading
+    uploadTask.on(
+      "state_changed",
+      (snapShot) => {
+        const ps = Math.round(
+          (snapShot.bytesTransferred / snapShot.totalBytes) * 100
+        );
+        setProgress(ps);
+        setPshow(true);
+      },
+      (err) => {
+        //catches the errors
+        console.log(err);
+      },
+      () => {
+        // gets the functions from storage refences the image storage in firebase by the children
+        // gets the download url then sets the image from firebase as the value for the imgUrl key:
+        storage
+          .ref("images")
+          .child(image.name)
+          .getDownloadURL()
+          .then((img) => {
+            console.log(img);
+            db.collection("tweet").add({
+              timetamp: firebase.firestore.FieldValue.serverTimestamp(),
+              avatar: user.avatar,
+              title: text,
+              img: img,
+              varified: true,
+              username: user.username,
+              name: user.name,
             });
-        }
-      );
-    });
+
+            setText("");
+            setPshow(false);
+          });
+      }
+    );
   };
 
   return (
@@ -85,11 +85,12 @@ function Post() {
       <div className="post">
         <div className="post__top">
           <Avatar src={user.avatar} />
-          <input
-            type="text"
-            placeholder="What happening?"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+          <InputEmoji
+            value={text}
+            onChange={setText}
+            cleanOnEnter
+            onEnter={(e) => setText(e.target.value)}
+            placeholder="Type a message"
           />
         </div>
         <div className="post__bottom">
@@ -119,10 +120,13 @@ function Post() {
           value={progress}
           className={pshow ? "pp ps" : "pp"}
         />
-
-        <Emoji show={show} />
       </div>
-
+      <div className={show ? "img__preview img__preview_show" : "img__preview"}>
+        <img src={img} />
+        <button className="button" onClick={() => setShow(false)}>
+          Choose
+        </button>
+      </div>
       <div
         className={show ? "layer_show layer" : "layer"}
         onClick={() => setShow(false)}

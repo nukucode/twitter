@@ -12,10 +12,11 @@ import MoreHorizOutlinedIcon from "@mui/icons-material/MoreHorizOutlined";
 import Avatar from "@mui/material/Avatar";
 import Sideitem from "./SideItem/Sideitem";
 import { useSelector } from "react-redux";
+import { auth } from "../../Firebase/Firebase";
 
 function Sidebar() {
   const user = useSelector((state) => state.login.user);
-  console.log(user)
+  console.log(user);
   return (
     <>
       <div className="sidebar">
@@ -32,7 +33,7 @@ function Sidebar() {
         <Sideitem Icon={MoreHorizOutlinedIcon} Name="More" />
         <button className="tweet">Tweet</button>
         <div className="user">
-          <div className="user__left">
+          <div className="user__left" onClick={() => auth.signOut()}>
             <Avatar src={user.avatar} />
           </div>
           <div className="user__mid">

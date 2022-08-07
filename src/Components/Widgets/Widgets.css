@@ -33,3 +33,9 @@
     color: #fff;
 }
 
+
+@media (max-width:700px) {
+    .widgets{
+        display: none;
+    }
+}

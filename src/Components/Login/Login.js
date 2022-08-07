@@ -18,6 +18,7 @@ function Login() {
           loggedIn: true,
           username: data?.user.displayName,
           avatar: data?.user.photoURL,
+          uid: data?.user.uid,
         })
       )
     );

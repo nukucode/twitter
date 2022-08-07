@@ -25,11 +25,11 @@
   margin: 15px 0;
   cursor: pointer;
   color: #fff;
-  transition: .4s;
+  transition: 0.4s;
 }
 
-.tweet:hover{
-    background: #1073b5;
+.tweet:hover {
+  background: #1073b5;
 }
 .user {
   display: flex;
@@ -54,4 +54,10 @@
   color: #aeaeae;
   font-size: 14px;
   text-transform: lowercase;
+}
+
+@media (max-width: 950px) {
+  .sidebar {
+    display: none;
+  }
 }
