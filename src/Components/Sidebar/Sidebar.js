@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Sidebar.css";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import HomeIcon from "@mui/icons-material/Home";
@@ -13,10 +13,14 @@ import Avatar from "@mui/material/Avatar";
 import Sideitem from "./SideItem/Sideitem";
 import { useSelector } from "react-redux";
 import { auth } from "../../Firebase/Firebase";
-
+import { useDispatch } from "react-redux";
+import { logout } from "../../features/loginSlice";
 function Sidebar() {
   const user = useSelector((state) => state.login.user);
   console.log(user);
+  const dispatch = useDispatch();
+
+  const [popUp, setPopUp] = useState(false);
   return (
     <>
       <div className="sidebar">
@@ -32,8 +36,8 @@ function Sidebar() {
         <Sideitem Icon={PersonOutlineOutlinedIcon} Name="Profile" />
         <Sideitem Icon={MoreHorizOutlinedIcon} Name="More" />
         <button className="tweet">Tweet</button>
-        <div className="user">
-          <div className="user__left" onClick={() => auth.signOut()}>
+        <div className="user" onClick={() => setPopUp(!popUp)}>
+          <div className="user__left">
             <Avatar src={user.avatar} />
           </div>
           <div className="user__mid">
@@ -42,6 +46,16 @@ function Sidebar() {
           </div>
           <div className="user__right">
             <MoreHorizOutlinedIcon />
+          </div>
+
+          <div
+            className={`${popUp ? "popup popup_show" : "popup"}`}
+            onClick={() => {
+              auth.signOut();
+              dispatch(logout());
+            }}
+          >
+            Logout
           </div>
         </div>
       </div>

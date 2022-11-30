@@ -82,3 +82,26 @@
 .likes span{
   margin-left: 10rem;
 }
+
+.fil,.outline{
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.fil{
+  filter: drop-shadow(#1DA1F2 0 1px 5px);
+}
+
+.user_info span .user_name{
+  display: none;
+}
+
+
+@media (max-width: 600px) {
+  
+  .user_info span .moment{
+    font-size: 11px;
+  }
+  
+}

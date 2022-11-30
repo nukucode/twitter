@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./Post.css";
 import InsertPhotoOutlinedIcon from "@mui/icons-material/InsertPhotoOutlined";
-import GifOutlinedIcon from "@mui/icons-material/GifOutlined";
 import PollOutlinedIcon from "@mui/icons-material/PollOutlined";
 import SentimentSatisfiedAltOutlinedIcon from "@mui/icons-material/SentimentSatisfiedAltOutlined";
-import PendingActionsOutlinedIcon from "@mui/icons-material/PendingActionsOutlined";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import Avatar from "@mui/material/Avatar";
 import { storage } from "../../../Firebase/Firebase";
@@ -107,9 +105,7 @@ function Post() {
           <div onClick={() => setShow(true)}>
             <SentimentSatisfiedAltOutlinedIcon />
           </div>
-          <GifOutlinedIcon />
           <PollOutlinedIcon />
-          <PendingActionsOutlinedIcon />
           <LocationOnOutlinedIcon />
           <button className="btn" onClick={handleUplode}>
             Tweet

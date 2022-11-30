@@ -14,10 +14,7 @@ import { useSelector } from "react-redux";
 function Tweet({ avatar, img, title, name, id, timetamp, varified, username }) {
   const [like, setLike] = useState(false);
   const [likes, setLikes] = useState([]);
-  const uid = useSelector((state) => state.login.user?.uid)
-
-  console.log(uid);
-  
+  const uid = useSelector((state) => state.login.user?.uid);
 
 
   useEffect(
@@ -37,29 +34,20 @@ function Tweet({ avatar, img, title, name, id, timetamp, varified, username }) {
     [db, id]
   );
 
-  console.log(likes);
+
   useEffect(
     () => setLike(likes.findIndex((like) => like.id === uid) !== -1),
     [db, likes]
   );
-  console.log(like);
+
 
   const likeHandler = async () => {
     if (like) {
-      db.collection("tweet")
-        .doc(id)
-        .collection("likes")
-        .doc(uid)
-        .delete();
+      db.collection("tweet").doc(id).collection("likes").doc(uid).delete();
     } else {
-      await db
-        .collection("tweet")
-        .doc(id)
-        .collection("likes")
-        .doc(uid)
-        .set({
-          name: name,
-        });
+      await db.collection("tweet").doc(id).collection("likes").doc(uid).set({
+        name: name,
+      });
     }
   };
 
@@ -70,8 +58,8 @@ function Tweet({ avatar, img, title, name, id, timetamp, varified, username }) {
           <Avatar src={avatar} />
           <div className="user_info">
             <span>
-              {name} - <p>@{username}</p> -{" "}
-              <Moment fromNow>{timetamp?.toDate()}</Moment>
+              <span className="user_name">{name}</span> <p>@{username}</p> -
+              <Moment fromNow className="moment">{timetamp?.toDate()}</Moment>
             </span>
             <p className="title">{title}</p>
           </div>
@@ -88,17 +76,17 @@ function Tweet({ avatar, img, title, name, id, timetamp, varified, username }) {
           <RepeatIcon />
           {like ? (
             <span className="fil">
-              {" "}
               <FavoriteIcon onClick={() => likeHandler()} />
+              {likes && <span>{likes.length}</span>}
             </span>
           ) : (
-            <span onClick={() => likeHandler()}>
+            <span onClick={() => likeHandler()} className="outline">
               <FavoriteBorderIcon />
+              {likes && <span>{likes.length}</span>}
             </span>
           )}
           <ShareIcon />
         </div>
-        <div className="likes">{likes && <span>{likes.length}</span>}</div>
       </div>
     </>
   );

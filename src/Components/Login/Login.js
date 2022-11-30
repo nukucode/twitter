@@ -6,7 +6,6 @@ import { auth, provider } from "../../Firebase/Firebase";
 
 function Login() {
   const dispatch = useDispatch();
-  const [user, setUser] = useState([]);
 
   const handleAuth = (e) => {
     e.preventDefault();
@@ -16,7 +15,7 @@ function Login() {
           name: data?.user.displayName,
           email: data?.user.email,
           loggedIn: true,
-          username: data?.user.displayName,
+          username: data?.user.displayName.split(" ").join(""),
           avatar: data?.user.photoURL,
           uid: data?.user.uid,
         })

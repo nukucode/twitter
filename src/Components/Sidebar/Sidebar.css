@@ -32,6 +32,7 @@
   background: #1073b5;
 }
 .user {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 15px;
@@ -39,6 +40,13 @@
   position: absolute;
   bottom: 30px;
   cursor: pointer;
+  transition: 0.3s ease-in-out;
+  padding: 10px;
+  border-radius: 30px;
+}
+
+.user:hover {
+  background: rgb(20, 20, 20);
 }
 
 .user__right {
@@ -61,3 +69,24 @@
     display: none;
   }
 }
+
+.popup {
+  position: absolute;
+  top: -3rem;
+  left: 30%;
+  background: #fff;
+  color: #000;
+  padding: 10px 25px;
+  border-radius: 5px;
+  border: none;
+  font-family: Montserrat;
+  font-weight: bold;
+  display: none;
+  box-shadow: 0px 0px 15px -4px rgb(255, 255, 255);
+}
+
+.popup_show {
+  display: block;
+}
+
+
