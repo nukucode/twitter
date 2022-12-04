@@ -5,7 +5,7 @@
 
 
 <p align="center">
-    Twitter Clone homepage clone using React JS.
+    Twitter
     <br />
     <br />
 </p>
@@ -18,10 +18,10 @@ With the terminal available, follow the instructions below:
 
 ```bash
 # Clone the repository
-$ git clone https://github.com/therogersak/twitter-clone
+$ git clone https://github.com/therogersak/twitter
 
-# Access the twitter-clone folder
-$ cd twitter-clone
+# Access the twitter folder
+$ cd twitter
 
 # Install dependencies
 $ npm install
