@@ -7027,6 +7027,18 @@
   dependencies:
     "minimist" "^1.2.6"
 
+"moment-timezone@^0.5.40":
+  "integrity" "sha512-tWfmNkRYmBkPJz5mr9GVDn9vRlVZOTe6yqY92rFxiOdWXbjaR0+9LwQnZGGuNR63X456NqmEkbskte8tWL5ePg=="
+  "resolved" "https://registry.npmjs.org/moment-timezone/-/moment-timezone-0.5.40.tgz"
+  "version" "0.5.40"
+  dependencies:
+    "moment" ">= 2.9.0"
+
+"moment@^2.29.4", "moment@>= 2.9.0":
+  "integrity" "sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w=="
+  "resolved" "https://registry.npmjs.org/moment/-/moment-2.29.4.tgz"
+  "version" "2.29.4"
+
 "ms@^2.1.1", "ms@2.1.2":
   "integrity" "sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w=="
   "resolved" "https://registry.npmjs.org/ms/-/ms-2.1.2.tgz"
